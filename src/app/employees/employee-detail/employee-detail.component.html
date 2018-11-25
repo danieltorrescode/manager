@@ -1,0 +1,21 @@
+<div class="row justify-content-center mt-3">
+	<div class="col-12 col-md-6">
+		<div class="jumbotron">
+			<a [routerLink]="['/employees']" class="badge badge-danger">
+				<h6>Close</h6>
+			</a>
+			<hr class="my-4">
+		  <h1 class="display-4">{{employee.firstName | uppercase }} {{employee.lastName | uppercase }}</h1>
+			<img src="assets/img/user_icon.png" alt="..." class="img-thumbnail img-detail">
+
+		  <p class="lead text-center">{{employee.email}}</p>
+			<hr class="my-4">
+			<div class="alert alert-dark" role="alert">
+				Department: {{employee.department}}<br>
+				Job: {{employee.job}}
+			</div>
+		  <hr class="my-4">
+			Salary: <span class="badge badge-pill badge-success">{{employee.salary}}</span>
+		</div>
+	</div>
+</div>

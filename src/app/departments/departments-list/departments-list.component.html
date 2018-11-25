@@ -1,0 +1,60 @@
+<div class="row mt-1">
+	<button
+		*ngIf="!this.selectedDepartment"
+		class="btn btn-primary my-3"
+		(click)="addDeparment()">
+		Add Department
+	</button>
+	<div [ngClass]="firstPanelLength ? 'col-md-12' : 'col-12 col-lg-6'" style="height:535px;overflow-y: scroll">
+		<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+					<tr *ngFor="let department of departments;let i=index">
+						<th scope="row">#{{i+1}}</th>
+						<td>
+							<div class="row">
+								<div class="col-md-3">
+									{{department.name }}
+								</div>
+								<div class="col-md-3">
+									{{department.description}}
+								</div>
+								<div class="col-md-6">
+									<button
+										class="btn btn-danger"
+										(click)="DepartmentDelete(department)">
+										Delete
+									</button>
+									<button
+										class="btn btn-warning ml-3"
+										(click)="selectDeparment(department)">
+										Edit
+									</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-12 col-lg-6" *ngIf="formPanel">
+		<button
+			*ngIf="this.selectedDepartment"
+			class="btn btn-primary my-3"
+			(click)="closeFormPanel()">
+			Close Form
+		</button>
+		<app-department-form
+			[selectedDepartment]="selectedDepartment"
+			(selectedDepartmentChanges)="replicateChanges($event)">
+		</app-department-form>
+	</div>
+</div>
+<hr>

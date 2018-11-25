@@ -1,0 +1,24 @@
+<h3>Results: <small>{{term}}</small> </h3>
+<div class="card-columns">
+
+	<div class="alert alert-danger" role="alert" *ngIf="employees.length == 0">
+	  No Employee Found.
+	</div>
+
+
+	<div class="card" *ngFor="let employee of employees;let i=index;">
+		<img class="card-img-top" src="assets/img/user_icon.png"
+					alt="Card image cap" style="width: 40%;" >
+
+		<div class="card-body">
+			<h5 class="card-title">{{employee.nombre}}</h5>
+			<p class="card-text">{{employee.bio}}</p>
+			<p class="card-text"><small class="text-muted">{{employee.aparicion}}</small></p>
+		</div>
+<!--
+		<button (click)="seeEmployeeDetails(i)" type="button"
+						class="btn btn-primary">Back</button> -->
+
+		<a [routerLink]="['/employees']" class="badge badge-secondary">Back</a>
+	</div>
+</div>

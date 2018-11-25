@@ -1,0 +1,39 @@
+<div class="alert alert-secondary mt-2 text-center" role="alert">
+	<a [routerLink]="['/employees/form']" class="badge badge-primary">
+		<h6>Add a new employee to list</h6>
+	</a>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md-3" *ngFor="let employee of employees;let i=index;">
+
+		<div class="card" >
+			<img class="card-img-top" src="assets/img/user_icon.png"
+			alt="Card image cap" >
+
+			<div class="card-body">
+				<h5 class="card-title text-left">{{employee.firstName}} {{employee.lastName}}</h5>
+				<!-- <p class="card-text">{{employee._id}}</p> -->
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-12 mb-1">
+					<button
+						class="btn btn-danger ml-1"
+						(click)="EmployeeDelete(employee)">
+						Delete
+				</button>
+				<button
+					class="btn btn-warning ml-1"
+					(click)="EmployeeUpdate(employee)">
+					Edit
+				</button>
+				</div>
+			</div>
+
+			<button (click)="seeEmployeeDetails(employee._id)" type="button"
+			class="btn btn-primary">Detail</button>
+
+		</div>
+		<br>
+	</div>
+</div>

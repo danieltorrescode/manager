@@ -1,0 +1,118 @@
+<div  *ngIf="showMsg">
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>success!</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+</div>
+
+<form [formGroup]="departmentForm" (ngSubmit)="saveChanges()" class="mt-1">
+
+	<div class="form-group row">
+	  <label class="col-2 col-form-label">Name</label>
+	  <div class="col-8">
+	    <input
+				class="form-control"
+	     type="text"
+	     placeholder="Name"
+	     formControlName="name"
+			 [ngClass]="{ 'is-invalid': !departmentForm.controls.name.valid && departmentForm.controls.name.touched }">
+		</div>
+		<div *ngIf="departmentForm.controls.name.touched &&
+								(departmentForm.controls.name.errors?.required ||
+								departmentForm.controls.name.errors?.minlength)"
+					class="form-control-feedback">
+				The Name is necessary.
+		</div>
+	</div>
+
+	<div class="form-group row">
+	  <label class="col-2 col-form-label">Description</label>
+	  <div class="col-8">
+	    <input
+				class="form-control"
+	     type="text"
+	     placeholder="Description"
+	     formControlName="description"
+			 [ngClass]="{ 'is-invalid': !departmentForm.controls.description.valid && departmentForm.controls.description.touched }">
+		</div>
+		<div *ngIf="departmentForm.controls.description.touched &&
+								(departmentForm.controls.description.errors?.required ||
+								departmentForm.controls.description.errors?.minlength)"
+					class="form-control-feedback">
+				The Description is necessary.
+		</div>
+	</div>
+	<div class="form-group row">
+	  <label class="col-2 col-form-label">Director</label>
+	  <div class="col-8">
+	    <input
+				class="form-control"
+	     type="text"
+	     placeholder="Director"
+	     formControlName="director"
+			 [ngClass]="{ 'is-invalid': !departmentForm.controls.director.valid && departmentForm.controls.director.touched }">
+		</div>
+		<div *ngIf="departmentForm.controls.director.touched &&
+								(departmentForm.controls.director.errors?.required ||
+								departmentForm.controls.director.errors?.minlength)"
+					class="form-control-feedback">
+				The Director is necessary.
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-2 col-form-label">N° Employees</label>
+		<div class="col-8">
+			<input
+				class="form-control"
+				 type="text"
+				 placeholder="N° Employees"
+				 formControlName="employees"
+				 [ngClass]="{ 'is-invalid': !departmentForm.controls.employees.valid && departmentForm.controls.employees.touched }">
+		</div>
+		<div *ngIf="departmentForm.controls.employees.touched && departmentForm.controls.employees.errors"
+					class="form-control-feedback">
+				The N° Employees is invalid.
+		</div>
+	</div>
+
+	<!-- <div class="form-group row">
+		<label class="col-2 col-form-label">Image</label>
+		<div class="col-8">
+			<input
+				class="form-control"
+				type="text"
+				placeholder="Image"
+				formControlName="img"
+				[ngClass]="{ 'is-invalid': !departmentForm.controls.img.valid && departmentForm.controls.img.touched }">
+		</div>
+		<div *ngIf="departmentForm.controls.img.touched && departmentForm.controls.img.errors"
+					class="form-control-feedback">
+				The Image is invalid.
+		</div>
+	</div> -->
+
+	<br>
+	<div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Save
+      </button>
+			<button type="submit"
+				class="btn btn-outline-danger ml-3" 
+				(click)="resetForm()">
+				reset
+			</button>
+    </div>
+  </div>
+
+</form>
+
+<div *ngIf="!departmentForm.valid && !showMsg" class="alert alert-danger" role="alert">
+	<strong>Status: </strong> {{ departmentForm.status }} !!!
+</div>
+<div *ngIf="departmentForm.valid" class="alert alert-success" role="alert">
+	<strong>Status: </strong> {{ departmentForm.status }} !
+</div>

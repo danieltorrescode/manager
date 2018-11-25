@@ -1,0 +1,123 @@
+<div  *ngIf="showMsg">
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>success!</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+</div>
+
+<hr>
+<div class="row justify-content-center">
+	<div class="col-6">
+		<form [formGroup]="signupForm" (ngSubmit)="saveChanges()">
+
+			<div class="form-group row">
+			  <label class="col-12 col-lg-2 col-form-label">First Name</label>
+			  <div class="col-12 col-lg-8">
+			    <input class="form-control"
+			           type="text"
+			           placeholder="First Name"
+			           formControlName="firstName"
+								 [ngClass]="{ 'is-invalid': !signupForm.controls.firstName.valid && signupForm.controls.firstName.touched }">
+				</div>
+				<div *ngIf="signupForm.controls.firstName.touched &&
+										(signupForm.controls.firstName.errors?.required ||
+										signupForm.controls.firstName.errors?.minlength)"
+							class="form-control-feedback">
+						The Name is necessary.
+				</div>
+			</div>
+
+		  <div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">Last Name</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="text"
+		             placeholder="Last Name"
+		             formControlName="lastName"
+								 [ngClass]="{ 'is-invalid': !signupForm.controls.lastName.valid && signupForm.controls.lastName.touched }">
+		    </div>
+				<div *ngIf="signupForm.controls.lastName.touched &&
+										(signupForm.controls.lastName.errors?.required ||
+										signupForm.controls.lastName.errors?.minlength)"
+							class="form-control-feedback">
+						The Last Name is necessary.
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">E-mail</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="text"
+		             placeholder="E-mail"
+		             formControlName="email"
+								 [ngClass]="{ 'is-invalid': !signupForm.controls.email.valid && signupForm.controls.email.touched }">
+		    </div>
+				<div *ngIf="signupForm.controls.email.touched &&
+										(signupForm.controls.email.errors?.required ||
+										signupForm.controls.email.errors)"
+							class="form-control-feedback">
+						The E-mail is necessary. Ex: email@mail.com
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">Password</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="password"
+		             placeholder="Password"
+		             formControlName="password"
+								 [ngClass]="{ 'is-invalid': !signupForm.controls.password.valid && signupForm.controls.password.touched }">
+		    </div>
+				<div *ngIf="signupForm.controls.password.touched &&
+										(signupForm.controls.password.errors?.required ||
+										signupForm.controls.password.errors || signupForm.errors?.customValidations)"
+							class="form-control-feedback">
+						The Password is necessary.
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">Confirm Password</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="password"
+		             placeholder="Confirm Password"
+		             formControlName="passwd"
+								 [ngClass]="{ 'is-invalid': !signupForm.controls.passwd.valid && signupForm.controls.passwd.touched }">
+		    </div>
+				<div *ngIf="signupForm.controls.passwd.touched &&
+										(signupForm.controls.passwd.errors?.required ||
+										signupForm.controls.passwd.errors || signupForm.errors?.customValidations)"
+							class="form-control-feedback">
+						The Confirm Password is necessary.
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-2 col-form-label">&nbsp;</label>
+		    <div class="input-group col-md-4">
+		      <button type="submit" class="btn btn-outline-primary">
+		        Submit
+		      </button>
+		    </div>
+				<div class="input-group col-md-4">
+					<button type="submit" class="btn btn-outline-danger" (click)="resetForm()">
+						reset
+					</button>
+				</div>
+		  </div>
+
+		</form>
+
+		<div *ngIf="!signupForm.valid && !showMsg" class="alert alert-danger" role="alert">
+			<strong>Status: </strong> {{ signupForm.status }} !!!
+		</div>
+		<div *ngIf="signupForm.valid" class="alert alert-success" role="alert">
+			<strong>Status: </strong> {{ signupForm.status }} !
+		</div>
+	</div>
+</div>

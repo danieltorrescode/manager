@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "erp-js": {
+    "manager": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/erp-js",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+							"./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+							"./node_modules/popper.js/dist/umd/popper.min.js",
+							"./node_modules/jquery/dist/jquery.slim.min.js",
+							"./node_modules/bootstrap/dist/js/bootstrap.min.js"
+						]
           },
           "configurations": {
             "production": {
@@ -50,18 +55,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "erp-js:build"
+            "browserTarget": "manager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "erp-js:build:production"
+              "browserTarget": "manager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "erp-js:build"
+            "browserTarget": "manager:build"
           }
         },
         "test": {
@@ -95,7 +100,7 @@
         }
       }
     },
-    "erp-js-e2e": {
+    "manager-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "erp-js:serve"
+            "devServerTarget": "manager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "erp-js:serve:production"
+              "devServerTarget": "manager:serve:production"
             }
           }
         },
@@ -123,5 +128,5 @@
       }
     }
   },
-  "defaultProject": "erp-js"
+  "defaultProject": "manager"
 }

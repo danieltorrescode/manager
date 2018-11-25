@@ -1,0 +1,68 @@
+<div  *ngIf="showMsg">
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>success!</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+</div>
+
+<h2 class="my-3">{{message}}</h2>
+
+<hr>
+<div class="row justify-content-center">
+	<div class="col-6">
+		<form [formGroup]="loginForm" (ngSubmit)="login()">
+
+			<div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">E-mail</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="text"
+		             placeholder="E-mail"
+		             formControlName="email"
+								 [ngClass]="{ 'is-invalid': !loginForm.controls.email.valid && loginForm.controls.email.touched }">
+		    </div>
+				<div *ngIf="loginForm.controls.email.touched &&
+										(loginForm.controls.email.errors?.required ||
+										loginForm.controls.email.errors)"
+							class="form-control-feedback">
+						The E-mail is necessary. Ex: email@mail.com
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-12 col-lg-2 col-form-label">Password</label>
+		    <div class="col-12 col-lg-8">
+		      <input class="form-control"
+		             type="password"
+		             placeholder="Password"
+		             formControlName="password"
+								 [ngClass]="{ 'is-invalid': !loginForm.controls.password.valid && loginForm.controls.password.touched }">
+		    </div>
+				<div *ngIf="loginForm.controls.password.touched &&
+										(loginForm.controls.password.errors?.required ||
+										loginForm.controls.password.errors || loginForm.errors?.customValidations)"
+							class="form-control-feedback">
+						The Password is necessary.
+				</div>
+		  </div>
+
+			<div class="form-group row">
+		    <label class="col-2 col-form-label">&nbsp;</label>
+		    <div class="input-group col-md-8">
+		      <button type="submit" class="btn btn-outline-primary">
+		        Submit
+		      </button>
+		    </div>
+		  </div>
+
+		</form>
+		<div *ngIf="!loginForm.valid && !showMsg" class="alert alert-danger" role="alert">
+			<strong>Status: </strong> {{ loginForm.status }} !!!
+		</div>
+		<div *ngIf="loginForm.valid" class="alert alert-success" role="alert">
+			<strong>Status: </strong> {{ loginForm.status }} !
+		</div>
+	</div>
+</div>
